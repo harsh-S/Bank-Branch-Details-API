@@ -3,8 +3,10 @@ var pg = require('pg'),
 
 pg.defaults.poolSize = constants.poolSize
 
+//process.env.DATABASE_URL = process.env.DATABASE_URL ? process.env.DATABASE_URL : 'postgres://harsh:hasz@localhost:5432/'
+
 function executeQuery(query, cb){	
-    pg.connect(constants.connString, function(err, client, done) {
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
         if(err) {
         	done()
 	    	console.log(err)
